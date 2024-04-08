@@ -1,6 +1,6 @@
-# OpenBR24
+# OpenBR24 (Forked Version)
 
-OpenBR24 is a sample implementation of the Lowrance Navico BR24 network protocol as described in the paper titled **"A Digital Interface for Imagery and Control of a Navico/Lowrance Broadband Radar"** by Adrian Dabrowski, Sebastian Busch, and Roland Stelzer.
+This is a forked version of OpenBR24, originally created by Adrian Dabrowski and Sebastian Busch. The original implementation is a sample implementation of the Lowrance Navico BR24 network protocol as described in the paper titled **"A Digital Interface for Imagery and Control of a Navico/Lowrance Broadband Radar"** by Adrian Dabrowski, Sebastian Busch, and Roland Stelzer.
 
 The final publication is available in print (Robotic Sailing, 2011, ISBN 978-3-642-22835-3) and online at <a href="https://www.researchgate.net/publication/226363952_A_Digital_Interface_for_Imagery_and_Control_of_a_NavicoLowrance_Broadband_Radar/" target="_blank">ResearchGate</a>.
 
@@ -20,9 +20,15 @@ To use OpenBR24, follow these steps:
 
 ### Prerequisites
 
-OpenBR24 requires the jnetpcap library, which in turn requires libpcap. Ensure you have these dependencies installed and Java SE Development Kit 17.0.10.
+OpenBR24 requires the jnetpcap library, which in turn requires libpcap. Ensure you have these dependencies installed.
 
-### Resolve Erros
+- Java SE Development Kit 17.0.10.
+- jnetpcap lib
+- libpcap lib
+
+For windows you may only need to instal the JDK 17.
+
+### Resolve Errors
 
 If you encounter java.lang.UnsatisfiedLinkError exceptions, follow these steps:
 
@@ -30,11 +36,8 @@ If you encounter java.lang.UnsatisfiedLinkError exceptions, follow these steps:
 ```bash
 ln -s /usr/lib/libpcap.so.1.1.1 /usr/lib/libpcap.so.0.9
 ```
-
 2. **Handle native Java bindings**: Depending on your platform, Java might fail to distinguish between 32-bit and 64-bit systems. Copy or symlink the appropriate .dll/.so file in the `$PROJECT/lib/jnetpcap/` directory.
-
 3. **Add multicast network route**: Ubuntu (and possibly other distributions) may require adding a route to the multicast network on the network adapter connected to the radar antenna unit. For example:
-
 ```bash
 sudo route add -net 224.0.0.0/4 dev eth0
 ```
