@@ -68,6 +68,4 @@ This updated version of OpenBR24 incorporates various improvements and fixes to 
 
 ## Legal
 
-OpenBR24 is free software released under the GNU General Public License as published by the Free Software Foundation. Refer to the [LICENSE](LICENSE) file for details.
-
 This software utilizes the jnetpcap-Library and IpReassemblyExample, both licensed under LGPL.
