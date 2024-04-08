@@ -32,7 +32,6 @@ public interface RadarSource {
 	 */
 	public RadarDataFrame getNextDataFrame();
 	
-	// TODO: timeout oder so...
 	
 	/**
 	 * Closes this Source

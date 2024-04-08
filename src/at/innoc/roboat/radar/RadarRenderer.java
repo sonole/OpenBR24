@@ -38,8 +38,6 @@ public class RadarRenderer implements RadarLineListener {
 	 */
 	public RadarRenderer (RadarSource whichSource, Class<RadarFrameDecoder> whichDecoder, RadarRendererListener listener) {
 		
-		//TODO: make image size changeable
-		//TODO make color selectable
 		img=new BufferedImage(imgw,imgh,rgbtype);
 		raster=img.getRaster();
 		midx=imgw/2;
@@ -75,23 +73,7 @@ public class RadarRenderer implements RadarLineListener {
 		return img;
 	}
 	
-	private int min(int a, int b, int c, int d) {
-		int r=a;
-		if (b<r) r=b;
-		if (c<r) r=c;
-		if (d<r) r=d;
-		return r;
-	}
-	
-	private int max(int a, int b, int c, int d) {
-		int r=a;
-		if (b>r) r=b;
-		if (c>r) r=c;
-		if (d>r) r=d;
-		return r;
-	}
-	
-	private int min(int a, int b, int c) {
+		private int min(int a, int b, int c) {
 		int r=a;
 		if (b<r) r=b;
 		if (c<r) r=c;

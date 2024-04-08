@@ -12,13 +12,11 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.jem.beaninfo.BeanInfoNature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1712568159340</id>
+			<id>1712038839754</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

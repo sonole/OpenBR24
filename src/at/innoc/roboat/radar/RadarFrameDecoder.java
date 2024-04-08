@@ -60,9 +60,9 @@ public class RadarFrameDecoder implements Runnable {
 				System.arraycopy(dataFrame.getData(), i+24, linedata, 0, 512);
 				
 				int angleraw=(lineheader[9]&0xff)<<8 | (lineheader[8]&0xff);
-				float angle=((float)angleraw*360/4096) -90; //TODO, probably should be done in renderer
+				float angle=((float)angleraw*360/4096) -90;
 				
-				int rr=lineheader[23]&0xff; // rr
+				//int rr=lineheader[23]&0xff; // rr
 				
 				int sstt=(lineheader[13]&0xff)<<8|(lineheader[12]&0xff);
 				

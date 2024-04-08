@@ -1,26 +1,4 @@
-/*
- * OpenBR24 GUI - http://www.roboat.at/technologie/radar/
- *
- * Copyright (C) 2011 Adrian Dabrowski, Sebastian Busch
- * 
- * OpenBR24 is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published
- * by the Free Software Foundation; either version 2 of the License,
- * or (at your option) any later version.
- *
- * OpenBR24 is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with OpenBR24; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
- * USA
- */
 package at.innoc.roboat.radar;
-
-
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -31,10 +9,10 @@ import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import java.awt.Insets;
 import java.awt.Color;
@@ -46,11 +24,6 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.ResourceBundle.Control;
-
-import javax.swing.SwingConstants;
-
-import org.omg.CORBA.portable.ApplicationException;
 
 import at.innoc.roboat.radar.control.LiveControl;
 import at.innoc.roboat.radar.control.ZoomLevel;
@@ -59,7 +32,6 @@ import javax.swing.BorderFactory;
 import java.awt.SystemColor;
 import javax.swing.JCheckBox;
 import javax.swing.JSlider;
-import javax.swing.DefaultBoundedRangeModel;
 
 /**
  * 
@@ -86,7 +58,7 @@ public class GUI extends JFrame implements RadarRendererListener {
 	private JPanel jSizePanel = null;
 	private JButton jFileButton = null;
 	private JButton jNetButton = null;
-	private JList jZoomList = null;
+	private JList<ZoomLevel> jZoomList = null;
 	private JButton jOnButton = null;
 	private JButton jOffButton = null;
 	private JPanel jSeperatorPanel = null;
@@ -96,7 +68,6 @@ public class GUI extends JFrame implements RadarRendererListener {
 	private JButton jNetCloseButton = null;
 	private FileDialog filedialog;
 	private JScrollPane jZoomScrollPane = null;
-	private JList jRateList = null;
 	private JLabel jZoomLabel = null;
 	
 	/**
@@ -145,7 +116,7 @@ public class GUI extends JFrame implements RadarRendererListener {
 						float scalex=(float)jViewerPanel.getWidth()/i.getWidth();
 						float scaley=(float)jViewerPanel.getHeight()/i.getHeight();
 						double realscale=scaley<scalex?scaley:scalex;
-						double scale=squareview?realscale*Math.sqrt(2):realscale;
+						//double scale=squareview?realscale*Math.sqrt(2):realscale;
 
 						int icorr=(int)(((float)i.getWidth()-(float)i.getWidth()/Math.sqrt(2))/2); // otherwise 0
 						if (!squareview) icorr=0;
@@ -297,19 +268,26 @@ public class GUI extends JFrame implements RadarRendererListener {
 			jNetButton.setMargin(new Insets(2, 10, 2, 10));
 			jNetButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					try {
+					try {				
+						//control.Power(true);
 						radarsource=new RadarLiveSource(control);
 						radarrenderer=new RadarRenderer(radarsource, radarlistener);
-						jNetButton.setVisible(false);
-						jNetCloseButton.setVisible(true);
-						jFileButton.setVisible(false);
-						jFileCloseButton.setVisible(false);
-						jViewerPanel.repaint();
 					} catch (UnknownHostException e1) {
 						e1.printStackTrace();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
+					// try {
+					// 	control.setZoom(defaultZoomIndex);
+					// } catch (IOException e1) {
+					// 	e1.printStackTrace();
+					// }
+					// jZoomList.setSelectedIndex(defaultZoomIndex);
+					jNetButton.setVisible(false);
+					jNetCloseButton.setVisible(true);
+					jFileButton.setVisible(false);
+					jFileCloseButton.setVisible(false);
+					jViewerPanel.repaint();
 				}
 			});
 		}
@@ -321,28 +299,27 @@ public class GUI extends JFrame implements RadarRendererListener {
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getJZoomList() {
+	private JList<ZoomLevel> getJZoomList() {
 		if (jZoomList == null) {
-			jZoomList = new JList();
+			jZoomList = new JList<ZoomLevel>(LiveControl.getAvailableZoomSettings());
 			jZoomList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jZoomList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-							System.out.println("valueChanged()"); // TODO Auto-generated Event stub valueChanged()
-							Object o=jZoomList.getSelectedValue();
-							if (o instanceof ZoomLevel) { 
-								try {
-									control.setZoom(((ZoomLevel)o).getIndex());
-								} catch (IOException e1) {
-									e1.printStackTrace();
-								}
-							}
+				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+					Object o = jZoomList.getSelectedValue();	
+					if (o instanceof ZoomLevel) {
+						try {
+							control.setZoom(((ZoomLevel) o).getIndex());
+						} catch (IOException e1) {
+							e1.printStackTrace();
 						}
-					});
-			jZoomList.setListData(control.getAvailableZoomSettings());
+					}
+				}
+			});
 		}
+
 		return jZoomList;
 	}
-
+	
 	/**
 	 * This method initializes jOnButton	
 	 * 	
@@ -351,9 +328,7 @@ public class GUI extends JFrame implements RadarRendererListener {
 	private JButton getJOnButton() {
 		if (jOnButton == null) {
 			jOnButton = new JButton();
-			jOnButton.setText("On");
-			jOnButton.setMargin(new Insets(2, 2, 2, 2));
-			jOnButton.setPreferredSize(new Dimension(40, 26));
+			jOnButton.setText("Power On");
 			jOnButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					try {
@@ -375,9 +350,9 @@ public class GUI extends JFrame implements RadarRendererListener {
 	private JButton getJOffButton() {
 		if (jOffButton == null) {
 			jOffButton = new JButton();
-			jOffButton.setText("Off");
-			jOffButton.setMargin(new Insets(2, 2, 2, 2));
-			jOffButton.setPreferredSize(new Dimension(40, 26));
+			jOffButton.setText("Power Off");
+			//jOffButton.setMargin(new Insets(2, 2, 2, 2));
+			//jOffButton.setPreferredSize(new Dimension(40, 26));
 			jOffButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					try {
@@ -524,7 +499,6 @@ public class GUI extends JFrame implements RadarRendererListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				GUI thisClass = new GUI();
@@ -545,12 +519,11 @@ public class GUI extends JFrame implements RadarRendererListener {
 
 	
 	public void op_init() {
-		
 		try {
 			control=new LiveControl();
 			control.open();
 		} catch (IOException e) {
-			System.out.println(e.toString());
+			JOptionPane.showMessageDialog(null, "Error");
 			e.printStackTrace();
 		}
 		
@@ -564,10 +537,10 @@ public class GUI extends JFrame implements RadarRendererListener {
 	private void initialize() {
 		this.setSize(700, 620);
 		this.setContentPane(getJContentPane());
-		this.setTitle("InnoC OpenBR24 Busch/Dabrowski Radar GUI");
+		this.setTitle("InnoC OpenBR24 Radar GUI");
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent e) {
-				System.out.println("windowClosing()"); // TODO Auto-generated Event stub windowClosing()
+				System.out.println("windowClosing()");
 				System.exit(0);
 			}
 		});
@@ -596,8 +569,7 @@ public class GUI extends JFrame implements RadarRendererListener {
 
 
 	@Override
-	public void onImageUpdate(int fromAngle, int toAngle, int x, int y, int w,
-			int h) {
+	public void onImageUpdate(int fromAngle, int toAngle, int x, int y, int w, int h) {
 		
 		Image i=radarrenderer.getImage();
 		
@@ -623,7 +595,7 @@ public class GUI extends JFrame implements RadarRendererListener {
 
 	@Override
 	public void onZoomChange(int meter) {
-		System.out.println("ZoomChange");
+		//System.out.println("ZoomChange: " + meter + "m");
 		zoomlevel=meter;
 		jZoomLabel.setText(meter+"m");
 		if (zoomlevel<=150) minormarker=25;
