@@ -4,6 +4,9 @@ OpenBR24 is a sample implementation of the Lowrance Navico BR24 network protocol
 
 The final publication is available in print (Robotic Sailing, 2011, ISBN 978-3-642-22835-3) and online at <a href="https://www.researchgate.net/publication/226363952_A_Digital_Interface_for_Imagery_and_Control_of_a_NavicoLowrance_Broadband_Radar/" target="_blank">ResearchGate</a>.
 
+![A photograph of the display unit and a screenshot of the JAVA program showing the same data.](captures/plotter_openbr24.jpg)
+A photograph of the display unit and a screenshot of the JAVA program showing the same data.
+
 ## Credits
 
 - Original Authors: Adrian Dabrowski, Sebastian Busch
