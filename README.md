@@ -63,7 +63,7 @@ This updated version of OpenBR24 incorporates various improvements and fixes to 
 
 ## Credits
 
-- Original Authors: Adrian Dabrowski, Sebastian Busch
+- Original Authors: Adrian Dabrowski, Sebastian Busch, Roland Stelzer
 - Updated by: Alexandros Paliampelos
 
 ## Legal
