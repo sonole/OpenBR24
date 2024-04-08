@@ -53,11 +53,6 @@ git clone https://github.com/your_username/OpenBR24.git
 ```
 3. Open the cloned repository in VS Code to start making changes or contributions.
 
-## Credits
-
-- Original Authors: Adrian Dabrowski, Sebastian Busch
-- Updated by: Alexandros Paliampelos
-
 ## Changes Made
 
 This updated version of OpenBR24 incorporates various improvements and fixes to ensure compatibility with the latest Java version and resolve several issues encountered during the update process. The primary changes made include:
@@ -65,6 +60,11 @@ This updated version of OpenBR24 incorporates various improvements and fixes to 
 - Upgraded the codebase to work with the latest Java version.
 - Resolved compatibility issues with socket and binding configurations.
 - Minor improvements to enhance overall performance and stability.
+
+## Credits
+
+- Original Authors: Adrian Dabrowski, Sebastian Busch
+- Updated by: Alexandros Paliampelos
 
 ## Legal
 
