@@ -7,19 +7,6 @@ The final publication is available in print (Robotic Sailing, 2011, ISBN 978-3-6
 ![A photograph of the display unit and a screenshot of the JAVA program showing the same data.](captures/plotter_openbr24.jpg)
 A photograph of the display unit and a screenshot of the JAVA program showing the same data.
 
-## Credits
-
-- Original Authors: Adrian Dabrowski, Sebastian Busch
-- Updated by: Alexandros Paliampelos
-
-## Changes Made
-
-This updated version of OpenBR24 incorporates various improvements and fixes to ensure compatibility with the latest Java version and resolve several issues encountered during the update process. The primary changes made include:
-
-- Upgraded the codebase to work with the latest Java version.
-- Resolved compatibility issues with socket and binding configurations.
-- Minor improvements to enhance overall performance and stability.
-
 ## Usage
 
 To use OpenBR24, follow these steps:
@@ -63,6 +50,18 @@ git clone https://github.com/your_username/OpenBR24.git
 ```
 3. Open the cloned repository in VS Code to start making changes or contributions.
 
+## Credits
+
+- Original Authors: Adrian Dabrowski, Sebastian Busch
+- Updated by: Alexandros Paliampelos
+
+## Changes Made
+
+This updated version of OpenBR24 incorporates various improvements and fixes to ensure compatibility with the latest Java version and resolve several issues encountered during the update process. The primary changes made include:
+
+- Upgraded the codebase to work with the latest Java version.
+- Resolved compatibility issues with socket and binding configurations.
+- Minor improvements to enhance overall performance and stability.
 
 ## Legal
 
