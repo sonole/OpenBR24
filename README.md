@@ -2,7 +2,7 @@
 
 OpenBR24 is a sample implementation of the Lowrance Navico BR24 network protocol as described in the paper titled **"A Digital Interface for Imagery and Control of a Navico/Lowrance Broadband Radar"** by Adrian Dabrowski, Sebastian Busch, and Roland Stelzer.
 
-The final publication is available in print (Robotic Sailing, 2011, ISBN 978-3-642-22835-3) and online at [ResearchGate](https://www.researchgate.net/publication/226363952_A_Digital_Interface_for_Imagery_and_Control_of_a_NavicoLowrance_Broadband_Radar/).
+The final publication is available in print (Robotic Sailing, 2011, ISBN 978-3-642-22835-3) and online at <a href="https://www.researchgate.net/publication/226363952_A_Digital_Interface_for_Imagery_and_Control_of_a_NavicoLowrance_Broadband_Radar/" target="_blank">ResearchGate</a>.
 
 ## Credits
 
@@ -30,9 +30,9 @@ To use OpenBR24, follow these steps:
 
 ### Prerequisites
 
-OpenBR24 requires the jnetpcap library, which in turn requires libpcap. Ensure you have these dependencies installed.
+OpenBR24 requires the jnetpcap library, which in turn requires libpcap. Ensure you have these dependencies installed and Java SE Development Kit 17.0.10.
 
-### Installation Steps
+### Resolve Erros
 
 If you encounter java.lang.UnsatisfiedLinkError exceptions, follow these steps:
 
@@ -51,7 +51,15 @@ sudo route add -net 224.0.0.0/4 dev eth0
 
 ## Development
 
-The GUI was built with the Eclipse Visual Editor (VE) extension. Note that VE has been abandoned in favor of the new WindowBuilder by Google, which seems to work with the old VE code.
+This project has been successfully run in a Windows environment using JDK 17. If you wish to contribute or make alterations, you can follow these steps:
+
+1. Download and install Visual Studio Code (VS Code).
+2. Clone this repository to your local machine using Git:
+```bash
+git clone https://github.com/your_username/OpenBR24.git
+```
+3. Open the cloned repository in VS Code to start making changes or contributions.
+
 
 ## Legal
 
