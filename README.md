@@ -22,7 +22,7 @@ To use OpenBR24, follow these steps:
 
 OpenBR24 requires the jnetpcap library, which in turn requires libpcap. Ensure you have these dependencies installed.
 
-- Java SE Development Kit 17.0.10.
+- Java SE Development Kit 17.0.10
 - jnetpcap lib
 - libpcap lib
 
@@ -49,7 +49,7 @@ This project has been successfully run in a Windows environment using JDK 17. If
 1. Download and install Visual Studio Code (VS Code).
 2. Clone this repository to your local machine using Git:
 ```bash
-git clone https://github.com/your_username/OpenBR24.git
+git clone https://github.com/sonole/OpenBR24.git
 ```
 3. Open the cloned repository in VS Code to start making changes or contributions.
 
